@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<br>
+<!-- Titulo -->
+<div class="container text-center">
+  <h2>Fruver Productos:</h2>
+  <p>Aqui encontrarás los productos que necesites, solo agregalos al carrito!</p>
+  <hr>
+  <h3 *ngIf="(tipo=='Todos' || !tipo)  && textoBuscar">Filtrar por: {{textoBuscar}}</h3>
+  <h3 *ngIf="tipo && tipo!='Todos'">Categoría: {{tipo}}</h3>
+  
+
+
+</div>
+<div *ngIf="tipo=='Todos' || !tipo" class="col-3 float-end me-5">
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="textoBuscar"
+      name="textoBuscar" (input)="buscar()">
+    <button class="btn btn-outline-success" type="submit" (click)="buscar()">Search</button>
+  </form>
+</div>
+<br><br><br>
+<div class="card-container">
+  <form *ngFor="let producto of productos | async" class="card" #productoForm="ngForm">
+    <img src="{{producto.imagen}}" alt="img" width="200">
+
+    <span>{{producto.idProducto}}. {{producto.nombre}}: $ {{producto.precio}} <span
+        class="small">[{{producto.tipo}}]</span>
+      <hr><br>
+      <p>{{producto.detalle}}</p><br>
+      <label class="form-label" for="cantidad">Cantidad
+        <input type="number" name="cantidad" id="cantidad" style="width: 80px;" min="1" value="1" required
+          [(ngModel)]="cantidades[producto.idProducto]">
+      </label><br>
+      <button type="button" class="btn btn-primary" (click)="agregarProducto(producto)"
+        [disabled]="!productoForm.form.valid">Agregar al carrito</button>
+    </span>
+  </form>
+</div>

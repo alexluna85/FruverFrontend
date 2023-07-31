@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<br>
+
+
+<div class="container">
+  <h1 class="text-center">Factura de Compra</h1>
+
+  <div>
+    <h3 class="text-center">Información de la Compra</h3>
+    <span><b> Fecha: </b>{{ fecha }}</span><br>
+    <span><b>Valor Total: </b>${{ valorTotal }}</span><br>
+    <span *ngIf="compra"><b>Cliente:</b> {{ compra.Usuario.nombres }}</span><br>
+    <span *ngIf="compra"><b>Dirección:</b> {{ compra.Usuario.direccion }}</span><br>
+    <span *ngIf="compra"><b>Correo:</b> {{ compra.Usuario.email }}</span><br>
+
+  </div>
+<br><hr>
+  <div *ngIf="productosCompra && total > 0">
+    <h3>Productos de la Compra: {{total}}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let productoCompra of productosCompra | async">
+          <td>{{ productoCompra.Producto.idProducto }}</td>
+          <td>{{ productoCompra.Producto.nombre }}</td>
+          <td>${{ productoCompra.Producto.precio }}</td>
+          <td>{{ productoCompra.cantidad }}</td>
+          <td>${{ productoCompra.valorProductoCompra }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br><hr>
+<h2><b>Total de pago: ${{valorTotal}}</b></h2>
+    <hr>
+  </div>
+</div>
+<br><br>

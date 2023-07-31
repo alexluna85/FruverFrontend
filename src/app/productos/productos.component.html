@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<br>
+<div class="custom-container ">
+    <h2 class="text-center">Gestión de Productos en Inventario</h2><br>
+    <div class="text-right">
+        <h4>Total: {{total}}</h4>
+        <button class="btn btn-primary" [routerLink]="['/agregar']">Agregar nuevo</button>
+    </div>
+    <br>
+    <div class="table-responsive">
+        <table class="table table-bordered ">
+            <thead>
+                <tr class="text-center">
+                    <th class="id">ID</th>
+                    <th class="imagen">Imagen</th>
+                    <th>Nombre</th>
+                    <th class="tipo">Precio</th>
+                    <th class="detalle">Detalle</th>
+                    <th class="tipo">Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <tr *ngFor="let producto of productos | async">
+                    <td>{{ producto.idProducto }}<img [src]="producto.imagen" alt="Producto" width="50"></td>
+                    <td><textarea type="text" [(ngModel)]="producto.imagen" class="form-control" name="imagen" required></textarea></td>
+                    <td><textarea type="text" [(ngModel)]="producto.nombre" class="form-control" name="nombre" required></textarea></td>
+                    <td><textarea type="number" [(ngModel)]="producto.precio" class="form-control" name="precio" required></textarea></td>
+                    <td><textarea [(ngModel)]="producto.detalle" class="form-control" name="detalle" required></textarea></td>
+                    <td><select class="form-control" id="tipo" name="tipo" [(ngModel)]="producto.tipo" required>
+                            <option [ngValue]="null">Seleccione una opción</option>
+                            <option [ngValue]="'Frutas'">Frutas</option>
+                            <option [ngValue]="'Verduras'">Verduras</option>
+                            <option [ngValue]="'Granos'">Granos</option>
+                            <option [ngValue]="'Hortalizas'">Hortalizas</option>
+                            <option [ngValue]="'Hierbas'">Hierbas</option> </select></td>
+                    <td class="text-center align-middle">
+                        <button class="btn btn-primary btn-sm" (click)="guardarProducto(producto)" [disabled]="producto.imagen === '' || producto.nombre === '' || producto.precio == 0 || producto.detalle === '' || producto.tipo === ''">Guardar</button>&nbsp;
+                        <button class="btn btn-danger btn-sm" (click)="borrarProducto(producto.idProducto)">Eliminar</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

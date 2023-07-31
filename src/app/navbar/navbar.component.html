@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-dark nav-bg-dark">
+    <!-- Sección izquierda - Logo o imagen -->
+    <a class="navbar-brand" (click)="mostrarCategoria('Todos')"><button type="button" class="btn btn-outline-light">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"></path></svg> Inicio</button>
+            </a>
+
+    <!-- Botón desplegable para dispositivos móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Sección central - Categorías de productos -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="mostrarCategoria('Frutas')">Frutas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="mostrarCategoria('Verduras')">Verduras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="mostrarCategoria('Granos')">Granos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="mostrarCategoria('Hortalizas')">Hortalizas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="mostrarCategoria('Hierbas')">Hierbas</a>
+            </li>
+            <li class="nav-item">
+            </li>
+            <li *ngIf="rol=='admin'" class="nav-item">
+                <a class="nav-link" [routerLink]="['/productos']">Administrar</a>
+            </li>
+        </ul>
+
+        <!-- Sección derecha - Iniciar sesión y carrito de compras -->
+        <ul class="navbar-nav">
+            <li *ngIf="nombre" class="nav-item">
+                <p class="nav-link"><button type="button" disabled class="btn btn-outline-secondary">
+                    {{nombre}}
+                </button></p>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"(click)="sesion()"><button type="button" class="btn btn-outline-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                        <path fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z">
+                        </path>
+                    </svg>
+                    <span *ngIf="login">Logout</span>
+                    <span *ngIf="!login">Login</span>
+                    
+                </button></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/carrito">
+                    <button type="button" class="btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-cart" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                            </path>
+                        </svg>
+                        Carrito <span id="total" class="badge badge-pill badge-primary">{{total}}</span>
+                    </button>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+</nav>

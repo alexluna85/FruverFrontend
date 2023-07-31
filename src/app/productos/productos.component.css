@@ -1,0 +1,25 @@
+.custom-container {
+    margin: 10px;
+    padding: 10px;
+}
+
+.imagen{
+    min-width: 300px;
+}
+
+.id{
+    width: 6%;
+}
+
+.tipo{
+    width: 10%;
+}
+
+.detalle{
+    width: 20%;
+}
+
+thead{
+    background-color: #001f3f; /* Código hexadecimal del color azul marino */
+
+}

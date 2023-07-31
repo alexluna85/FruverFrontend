@@ -1,0 +1,14 @@
+.nav-bg-dark {
+  padding-left: 25px;
+  background-color: #001f3f;
+  /* Código hexadecimal del color azul marino */
+}
+
+#total{
+  background-color: black;
+  font-size: 15px;
+}
+
+.nav-item{
+  cursor: pointer;
+}
